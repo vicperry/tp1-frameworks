@@ -1,15 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id='App'>
+  <h1>{{title}}</h1>
+  <div class="lista" v-bind:key="task.id" v-for="task in tasks">
+    <p v-if="task.estaCompleta == true" id="completa">{{task.descricao}}</p>
+    <p v-else id="incompleta">{{task.descricao}}</p>
+
+  </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data: function(){
+    return{
+    title: "Lista de Tarefas",
+    tasks: [
+      {id: 1, descricao: "Arrumar a cama", estaCompleta: false},
+      {id: 2, descricao: "Escovar os dentes", estaCompleta: true},
+      {id: 3, descricao: "Tomar café-da-manhã", estaCompleta: true}
+    ]
+    }
   }
 }
 </script>
@@ -22,5 +34,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+#completa{
+  text-decoration: line-through;
 }
 </style>
